@@ -4,5 +4,32 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd">
 	
 	<!-- Root Context: defines shared resources visible to all other web components -->
+	<bean id="memberController" class="com.itwillbs.controller.MemberController">
+		<!-- 방법1: 생성자를 통해서 전달 -->
+		<constructor-arg name="memberService" ref="memberService"></constructor-arg>
+		
+		<!-- 방법2: set메서드 전달 -->
+		<property name="memberService" ref="memberService"></property>
+	</bean>
+	
+	<!-- 부모 = 자식 객체생성 => 중복되는것은 제일 위에 객체생성 선언하기 -->
+	<!-- MemberService memberService=new MemberServiceImpl(); -->
+	<!-- 스프링형태 객체생성 -->
+	<bean id="memberService" class="com.itwillbs.service.MemberServiceImpl">
+		<!-- 방법1: 생성자를 통해서 전달 -->
+		<constructor-arg name="memberDAO" ref="memberDAO"></constructor-arg>
+		
+		<!-- 방법2: set메서드 전달 -->
+		<property name="memberDAO" ref="memberDAO"></property>
+	
+	</bean>
+		
+	<!-- 부모 = 자식 객체생성 => 중복되는것은 제일 위에 객체생성 선언하기 -->
+	<!-- MemberDAO memberDAO=new MemberDAOImpl(); -->	
+	<!-- 스프링형태 객체생성 -->
+	<bean id="memberDAO" class="com.itwillbs.dao.MemberDAOImpl">
+	
+	</bean>
+		
 		
 </beans>

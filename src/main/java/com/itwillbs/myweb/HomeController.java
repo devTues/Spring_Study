@@ -31,16 +31,16 @@ public class HomeController {
 	 */
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Locale locale, Model model) {
-		logger.info("Welcome home! The client locale is {}.", locale);
+//		logger.info("Welcome home! The client locale is {}.", locale);
 		
-		Date date = new Date();
-		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
+//		Date date = new Date();
+//		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
 		
-		String formattedDate = dateFormat.format(date);
+//		String formattedDate = dateFormat.format(date);
 		
 		// 메서드에서 Model model 변수에 객체 생성한 model 데이터를 담아서
 		// model 데이터를 담기(글목록, 페이지 정보 => request에 저장)
-		model.addAttribute("serverTime", formattedDate );
+//		model.addAttribute("serverTime", formattedDate );
 		// ${serverTime} => model에 담아간 데이터 이름 => 출력(값 출력) 
 		
 		// 가상주소 http://localhost:8080/myweb/
@@ -51,7 +51,9 @@ public class HomeController {
 		
 		// 화면에 보이는 내용 /WEB-INF/views/파일이름.jsp
 		// 기본 이동방식 : 주소변경 없이 이동
-		return "home";
+//		return "home";
+//		return "redirect:/member/main";
+		return "redirect:/member/insert";
 	} // home 메서드
 	
 }

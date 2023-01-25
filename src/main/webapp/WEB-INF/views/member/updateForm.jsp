@@ -27,7 +27,7 @@
 </form>
 <%-- 	<% --%>
 <!-- %> -->
-<a href="main.jsp">main.jsp 이동</a>
+<a href="${pageContext.request.contextPath }/member/main">main.jsp 이동</a>
 
 </body>
 </html>
