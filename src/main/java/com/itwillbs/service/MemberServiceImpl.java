@@ -9,6 +9,7 @@ public class MemberServiceImpl implements MemberService{
 //  부모=자식 객체생성
 //	중복되는것은 제일 위에 객체생성 선언하기
 //	MemberDAO memberDAO=new MemberDAOImpl();
+	@Inject
 	private MemberDAO memberDAO;
 	
 	@Inject

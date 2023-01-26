@@ -15,6 +15,7 @@ public class MemberController {
 //	중복되는것은 제일 위에 객체생성 선언하기
 //	MemberService memberService=new MemberServiceImpl();
 //	멤버변수
+	@Inject
 	private MemberService memberService;
 	
 //	방법1: 생성자를 통해서 전달 => root-context.xml
