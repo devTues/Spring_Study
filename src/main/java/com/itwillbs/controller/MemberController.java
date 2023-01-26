@@ -21,16 +21,16 @@ public class MemberController {
 //	방법1: 생성자를 통해서 전달 => root-context.xml
 //	public MemberController(전달받을 변수) {
 //	}
-	@Inject
-	public MemberController(MemberService memberService) {
-		this.memberService = memberService;
-	}
+//	@Inject
+//	public MemberController(MemberService memberService) {
+//		this.memberService = memberService;
+//	}
 	
-	@Inject
+//	@Inject
 //	방법2: set메서드 전달 => root-context.xml
-	public void setMemberService(MemberService memberService) {
-		this.memberService = memberService;
-	}
+//	public void setMemberService(MemberService memberService) {
+//		this.memberService = memberService;
+//	}
 	
 	
 	

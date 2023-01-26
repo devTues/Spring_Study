@@ -2,9 +2,12 @@ package com.itwillbs.service;
 
 import javax.inject.Inject;
 
+import org.springframework.stereotype.Service;
+
 import com.itwillbs.dao.MemberDAO;
 import com.itwillbs.domain.MemberDTO;
 
+@Service
 public class MemberServiceImpl implements MemberService{
 //  부모=자식 객체생성
 //	중복되는것은 제일 위에 객체생성 선언하기
@@ -12,16 +15,16 @@ public class MemberServiceImpl implements MemberService{
 	@Inject
 	private MemberDAO memberDAO;
 	
-	@Inject
-	public MemberServiceImpl(MemberDAO memberDAO) {
-		this.memberDAO = memberDAO;
-	}
+//	@Inject
+//	public MemberServiceImpl(MemberDAO memberDAO) {
+//		this.memberDAO = memberDAO;
+//	}
 
-	@Inject
+//	@Inject
 //	방법2: set메서드 전달 => root-context.xml
-	public void setMemberDAO(MemberDAO memberDAO) {
-		this.memberDAO = memberDAO;
-	}
+//	public void setMemberDAO(MemberDAO memberDAO) {
+//		this.memberDAO = memberDAO;
+//	}
 
 	@Override
 	public void insertMember(MemberDTO dto) {
