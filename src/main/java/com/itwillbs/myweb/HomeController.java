@@ -52,8 +52,9 @@ public class HomeController {
 		// 화면에 보이는 내용 /WEB-INF/views/파일이름.jsp
 		// 기본 이동방식 : 주소변경 없이 이동
 //		return "home";
-//		return "redirect:/member/main";
-		return "redirect:/member/insert";
+		return "redirect:/member/main";
+//		return "redirect:/member/insert";
+//		return "redirect:/member/login";
 	} // home 메서드
 	
 }

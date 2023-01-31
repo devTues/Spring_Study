@@ -1,8 +1,12 @@
 package com.itwillbs.controller;
 
+import java.util.List;
+
 import javax.inject.Inject;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -78,15 +82,26 @@ public class MemberController {
 	} // login 메서드
 	
 	@RequestMapping(value = "/member/loginPro", method = RequestMethod.POST)
-	public String loginPro(MemberDTO dto) {
+	public String loginPro(MemberDTO dto, HttpSession session) {
 		System.out.println("Membercontroller loginPro()");
 		System.out.println(dto.getId());
 		System.out.println(dto.getPass());
 //		MemberService 부모=자식 객체생성
 //		MemberService memberService=new MemberServiceImpl(); // 중복됨
-		memberService.userCheck(dto);
 		
-		return "redirect:/member/main";
+		MemberDTO memberDTO=memberService.userCheck(dto);
+//		아이디 일치 => memberDTO 주소 담아서 옴 => 세션값 생성, main 이동
+//		아이디 불일치 => memberDTO null 넘어옴 => 정보틀림 뒤로이동
+		if(memberDTO!=null) {
+//			아이디 일치 => memberDTO 주소 담아서 옴 => 세션값 생성, main 이동
+			session.setAttribute("id", dto.getId());
+			return "redirect:/member/main";
+		} else {
+//			아이디 불일치 => memberDTO null 넘어옴 => 정보틀림 뒤로이동
+//			member/msg.jsp 이동
+			return "member/msg";
+		}
+		
 	} // loginPro 메서드
 	
 	
@@ -98,48 +113,87 @@ public class MemberController {
 	
 	// 가상주소 http://localhost:8080/myweb/member/logout
 	@RequestMapping(value = "/member/logout", method = RequestMethod.GET)
-	public String logout() {
+	public String logout(HttpSession session) {
+		System.out.println("Membercontroller logout()");
+		session.invalidate();
 		return "redirect:/member/login";
-	} // main 메서드
+	} // logout 메서드
 	
 	
 	@RequestMapping(value = "/member/info", method = RequestMethod.GET)
-	public String info(MemberDTO dto) {
+	public String info(HttpSession session, Model model) {
 		System.out.println("Membercontroller info()");
 //		MemberService memberService=new MemberServiceImpl(); // 중복됨
-		System.out.println(dto.getId());
-		memberService.info(dto);
+		String id=(String)session.getAttribute("id");
+		MemberDTO dto=memberService.getMember(id);
+		
+//		dto Model model(request) 담기
+		model.addAttribute("dto", dto);
+		
 		return "member/info";
 	} // info 메서드
 	
 	
 	@RequestMapping(value = "/member/update", method = RequestMethod.GET)
-	public String update() {
+	public String update(HttpSession session, Model model) {
+		System.out.println("Membercontroller update()");
+		String id=(String)session.getAttribute("id");
+		MemberDTO dto=memberService.getMember(id);
+		
+//		dto Model model(request) 담기
+		model.addAttribute("dto", dto);
+		
 		return "member/updateForm";
 	} // update 메서드
 	
 	@RequestMapping(value = "/member/updatePro", method = RequestMethod.POST)
-	public String updatePro() {
+	public String updatePro(MemberDTO dto) {
+		System.out.println("Membercontroller updatePro()");
 		
-		return "redirect:/member/main";
+		MemberDTO memberDTO=memberService.userCheck(dto);
+		if(memberDTO!=null) {
+			memberService.updateMember(dto);
+			return "redirect:/member/main";
+		} else {
+			return "member/msg";
+		}
+			
 	} // updatePro 메서드
 	
 	
 	@RequestMapping(value = "/member/delete", method = RequestMethod.GET)
-	public String delete() {
+	public String delete(HttpSession session, Model model) {
+		String id=(String)session.getAttribute("id");
+		MemberDTO dto=memberService.getMember(id);
+		
+//		dto Model model(request) 담기
+		model.addAttribute("dto", dto);
+		
 		return "member/deleteForm";
 	} // delete 메서드
 	
 	@RequestMapping(value = "/member/deletePro", method = RequestMethod.POST)
-	public String deletePro() {
-		return "redirect:/member/login";
+	public String deletePro(MemberDTO dto) {
+		System.out.println("Membercontroller deletePro()");
+		
+		MemberDTO memberDTO=memberService.userCheck(dto);
+		if(memberDTO!=null) {
+			memberService.deleteMember(dto);
+			return "redirect:/member/login";
+		} else {
+			return "member/msg";
+		}
 		
 	} // deletePro 메서드
 	
+	
+	
 	@RequestMapping(value = "/member/list", method = RequestMethod.GET)
-	public String list() {
+	public String getMemberList() {
+		System.out.println("Membercontroller getMemberList()");
+		
 		return "member/list";
-	} // delete 메서드
+	} // getMemberList 메서드
 	
 	
 	

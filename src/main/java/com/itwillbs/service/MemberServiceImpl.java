@@ -39,22 +39,37 @@ public class MemberServiceImpl implements MemberService{
 	}
 
 	@Override
-	public void userCheck(MemberDTO dto) {
+	public MemberDTO userCheck(MemberDTO dto) {
 		System.out.println("MemberServiceImpl userCheck()");
 		System.out.println(dto.getId());
 		System.out.println(dto.getPass());
 //		∞¥√ºª˝º∫ => ∏ﬁº≠µÂ »£√‚
 //		MemberDAO memberDAO=new MemberDAOImpl(); // ¡ﬂ∫πµ 
-		memberDAO.userCheck(dto);
+		return memberDAO.userCheck(dto);
 	}
 
 	@Override
-	public void info(MemberDTO dto) {
+	public MemberDTO getMember(String id) {
 		System.out.println("MemberServiceImpl info()");
+		System.out.println(id);
+//		MemberDAO memberDAO=new MemberDAOImpl(); // ¡ﬂ∫πµ 
+		return memberDAO.getMember(id);
+		
+	}
+
+	@Override
+	public void updateMember(MemberDTO dto) {
+		System.out.println("MemberServiceImpl updateMember()");
 		System.out.println(dto.getId());
 		System.out.println(dto.getPass());
-//		MemberDAO memberDAO=new MemberDAOImpl(); // ¡ﬂ∫πµ 
-		memberDAO.info(dto);
+		System.out.println(dto.getName());
+		memberDAO.updateMember(dto);
+	}
+
+	@Override
+	public void deleteMember(MemberDTO dto) {
+		System.out.println("MemberServiceImpl deleteMember()");
+		memberDAO.deleteMember(dto);
 		
 	}
 	

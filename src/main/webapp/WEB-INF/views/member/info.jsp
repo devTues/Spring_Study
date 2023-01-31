@@ -22,10 +22,10 @@
 // System.out.println("데이터 저장된 리턴받은 주소 :"+ dto);
 
 %>
-	아이디 : <%//=dto.getId() %><br>
-	비밀번호 : <%//=dto.getPass() %><br>
-	이름 : <%//=dto.getName() %><br>
-	가입날짜 : <%//=dto.getDate() %> <br>
+	아이디 : ${dto.id}<br>
+	비밀번호 : ${dto.pass}<br>
+	이름 : ${dto.name}<br>
+	가입날짜 : ${dto.date}<br>
 	
 
 <a href="${pageContext.request.contextPath }/member/main">main.jsp 이동</a>

@@ -16,6 +16,8 @@ public class MemberDAOImpl implements MemberDAO{
 	@Inject
 	private SqlSession sqlSession;
 	
+	private static final String namespace="com.itwillbs.mappers.memberMapper";
+	
 	
 //	private DataSource dataSource;
 //	private SimpleJdbcTemplate jdbcTemplate;
@@ -38,28 +40,51 @@ public class MemberDAOImpl implements MemberDAO{
 		System.out.println(dto.getName());
 		// 날짜
 		Timestamp date=new Timestamp(System.currentTimeMillis());
+		dto.setDate(date);
 		
 //		jdbcTemplate.update(sql구문, ?값);
 //		jdbcTemplate.update(insertSql, dto.getId(),dto.getPass(),dto.getName(),date);
 //		sqlSession.insert(sql구문, ?값);
-		sqlSession.insert("com.itwillbs.mappers.memberMapper.insertMember", dto);
+		sqlSession.insert(namespace+".insertMember", dto);
+//		sqlSession.update(null);
+//		sqlSession.delete(null);
+		// select 리턴값 하나 => sqlSession.selectOne(null);
+		// select List(배열) 리턴할 때 => sqlSession.selectList(null);
 		
 	}
 
 
 	@Override
-	public void userCheck(MemberDTO dto) {
+	public MemberDTO userCheck(MemberDTO dto) {
 		System.out.println("MemberDAOImpl userCheck");
 		System.out.println(dto.getId());
 		System.out.println(dto.getPass());
+		return sqlSession.selectOne(namespace+".userCheck", dto);
+		
 	}
 
 	@Override
-	public void info(MemberDTO dto) {
+	public MemberDTO getMember(String id) {
 		System.out.println("MemberDAOImpl info");
-		System.out.println(dto.getId());
-		System.out.println(dto.getPass());
+		System.out.println(id);
+		return sqlSession.selectOne(namespace+".getMember", id);
+	}
+
+
+	@Override
+	public void updateMember(MemberDTO dto) {
+		System.out.println("MemberDAOImpl updateMember");
 		System.out.println(dto.getName());
+		sqlSession.update(namespace+".updateMember", dto);
+		
+	}
+
+
+	@Override
+	public void deleteMember(MemberDTO dto) {
+		System.out.println("MemberDAOImpl deleteMember");
+		sqlSession.delete(namespace+".deleteMember", dto);
+		
 	}
 
 	
