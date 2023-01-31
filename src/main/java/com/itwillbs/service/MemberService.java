@@ -9,6 +9,7 @@ public interface MemberService {
 	public MemberDTO getMember(String id);
 	public void updateMember(MemberDTO dto);
 	public void deleteMember(MemberDTO dto);
+	public MemberDTO getMemberList();
 	
 	
 }

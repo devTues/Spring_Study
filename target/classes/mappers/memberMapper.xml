@@ -27,7 +27,7 @@
   		delete from members where id=#{id}
   	</delete>
   	
-  	<select id="list" resultType="com.itwillbs.domain.MemberDTO">
+  	<select id="getMemberList" resultType="com.itwillbs.domain.MemberDTO">
   		select * from members
   	</select>
   	

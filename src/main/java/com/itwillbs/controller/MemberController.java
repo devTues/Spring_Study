@@ -191,7 +191,7 @@ public class MemberController {
 	@RequestMapping(value = "/member/list", method = RequestMethod.GET)
 	public String getMemberList() {
 		System.out.println("Membercontroller getMemberList()");
-		
+		memberService.getMemberList(dto);
 		return "member/list";
 	} // getMemberList ¸Þ¼­µå
 	

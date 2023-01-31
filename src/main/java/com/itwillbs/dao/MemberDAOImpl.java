@@ -87,6 +87,13 @@ public class MemberDAOImpl implements MemberDAO{
 		
 	}
 
+
+	@Override
+	public void getMemberList(MemberDTO dto) {
+		System.out.println("MemberDAOImpl getMemberList");
+		
+	}
+
 	
 	
 }
