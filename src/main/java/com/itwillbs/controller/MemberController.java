@@ -15,6 +15,10 @@ import com.itwillbs.service.MemberService;
 
 @Controller
 public class MemberController {
+// 순서!!!
+//	MemberController -> MemberService -> MemberServiceImpl
+//	-> MemberDAO -> MemberDAOImpl -> memberMapper
+	
 //	부모 = 자식 객체생성
 //	중복되는것은 제일 위에 객체생성 선언하기
 //	MemberService memberService=new MemberServiceImpl();
@@ -189,9 +193,12 @@ public class MemberController {
 	
 	
 	@RequestMapping(value = "/member/list", method = RequestMethod.GET)
-	public String getMemberList() {
+	public String list(Model model) {
 		System.out.println("Membercontroller getMemberList()");
-		memberService.getMemberList(dto);
+		
+		List<MemberDTO> memberList=memberService.getMemberList();
+		
+		model.addAttribute("memberList", memberList);
 		return "member/list";
 	} // getMemberList 메서드
 	

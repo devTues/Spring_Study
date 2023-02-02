@@ -1,5 +1,7 @@
 package com.itwillbs.service;
 
+import java.util.List;
+
 import com.itwillbs.domain.MemberDTO;
 
 public interface MemberService {
@@ -9,7 +11,7 @@ public interface MemberService {
 	public MemberDTO getMember(String id);
 	public void updateMember(MemberDTO dto);
 	public void deleteMember(MemberDTO dto);
-	public MemberDTO getMemberList();
+	public List<MemberDTO> getMemberList();
 	
 	
 }

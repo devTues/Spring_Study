@@ -1,5 +1,7 @@
 package com.itwillbs.service;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
@@ -74,10 +76,12 @@ public class MemberServiceImpl implements MemberService{
 	}
 
 	@Override
-	public void getMemberList(MemberDTO dto) {
-		memberDAO.getMemberList(dto);
-		
+	public List<MemberDTO> getMemberList() {
+		System.out.println("MemberServiceImpl getMemberList()");
+		return memberDAO.getMemberList();
 	}
+
+	
 	
 	
 	

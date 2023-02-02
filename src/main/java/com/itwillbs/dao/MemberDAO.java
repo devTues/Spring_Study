@@ -1,5 +1,7 @@
 package com.itwillbs.dao;
 
+import java.util.List;
+
 import com.itwillbs.domain.MemberDTO;
 
 public interface MemberDAO {
@@ -9,6 +11,6 @@ public interface MemberDAO {
 	public MemberDTO getMember(String id);
 	public void updateMember(MemberDTO dto);
 	public void deleteMember(MemberDTO dto);
-	public void getMemberList(MemberDTO dto);
+	public List<MemberDTO> getMemberList();
 	
 }
